@@ -175,7 +175,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%8A%80%E6%9C%AF/" style="color: #03a9f4">
+                <a href="/tags/%E6%8A%80%E6%9C%AF/" style="color: #ff7d73">
                     技术
                 </a>
             </span>
@@ -410,7 +410,29 @@ tag:
   per_page: 10
 </code></pre>
 <p>确保 <code>enable</code> 设置为 <code>true</code>。</p>
-<h3 id="（三）创建about页面"><a href="#（三）创建about页面" class="headerlink" title="（三）创建about页面"></a>（三）创建about页面</h3><h2 id="七、markdown基本语法"><a href="#七、markdown基本语法" class="headerlink" title="七、markdown基本语法"></a>七、markdown基本语法</h2><h3 id="（一）基础语法"><a href="#（一）基础语法" class="headerlink" title="（一）基础语法"></a>（一）基础语法</h3><h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. <strong>标题</strong></h4><p>用 <code>#</code> 表示标题级别，数量对应标题等级（1~6 级）：</p>
+<h3 id="（三）创建about页面"><a href="#（三）创建about页面" class="headerlink" title="（三）创建about页面"></a>（三）创建about页面</h3><ol>
+<li><strong>生成 About 页面</strong></li>
+</ol>
+<p>运行以下命令生成 About 页面：</p>
+<pre><code>hexo new page about
+</code></pre>
+<p>这会在 <code>source/about/index.md</code> 中生成一个文件。</p>
+<hr>
+<ol start="2">
+<li><strong>编辑 About 页面</strong></li>
+</ol>
+<p>打开生成的 <code>source/about/index.md</code> 文件，编辑其内容。例如：</p>
+<pre><code>---
+title: 关于我
+date: 2023-10-01
+---
+
+欢迎来到我的博客！我是羽翩跹，一名热爱技术的开发者。  
+这里记录了我的学习笔记、项目经验和生活感悟。  
+感谢您的访问！
+</code></pre>
+<p>您可以根据需要添加更多内容，例如个人简介、联系方式、社交媒体链接等。</p>
+<h2 id="七、markdown基本语法"><a href="#七、markdown基本语法" class="headerlink" title="七、markdown基本语法"></a>七、markdown基本语法</h2><h3 id="（一）基础语法"><a href="#（一）基础语法" class="headerlink" title="（一）基础语法"></a>（一）基础语法</h3><h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. <strong>标题</strong></h4><p>用 <code>#</code> 表示标题级别，数量对应标题等级（1~6 级）：</p>
 <pre><code># 一级标题
 ## 二级标题
 ### 三级标题
