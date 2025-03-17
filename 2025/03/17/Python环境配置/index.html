@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>Python环境配置 | 翩跹志</title>
+    <meta name="author" content="羽翩跹" />
+    <meta name="description" content="墨染云笺香入梦，风携花影静听禅" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>翩跹志</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;翩跹志</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Python环境配置</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/3/17
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%80%E6%9C%AF/" style="color: #00a596">
+                    技术
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>python一定要安装<strong>amd64位的版本</strong>，否则后续安装第三方库极为容易报错。</p>
+<p>安装第三方库前要安装<strong>Microsoft Visual C++ Build Tools</strong></p>
+<span id="more"></span>
+
+<h2 id="一、设置清华源"><a href="#一、设置清华源" class="headerlink" title="一、设置清华源"></a><strong>一、设置清华源</strong></h2><pre><code>set PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
+<h2 id="二、安装各类包"><a href="#二、安装各类包" class="headerlink" title="二、安装各类包"></a><strong>二、安装各类包</strong></h2><h3 id="安装预编译的二进制文件"><a href="#安装预编译的二进制文件" class="headerlink" title="安装预编译的二进制文件"></a><strong>安装预编译的二进制文件</strong></h3><p>可以使用 <code>--only-binary</code> 参数强制安装已编译好的 <code>pandas</code> 包：</p>
+<pre><code>pip install pandas --only-binary=:all:
+</code></pre>
+<h3 id="1-数据处理"><a href="#1-数据处理" class="headerlink" title="1. 数据处理"></a>1. <strong>数据处理</strong></h3><pre><code>pip install numpy pandas scipy
+pip install polars
+pip install polars[plot] 
+pip install polars[time]
+pip install polars[all]
+</code></pre>
+<ul>
+<li><strong>Numpy</strong>：支持高效数组计算。</li>
+<li><strong>Pandas</strong>：用于数据操作和分析。</li>
+<li><strong>Scipy</strong>：提供科学计算的各种功能，例如线性代数、优化、统计。</li>
+<li><strong>polars</strong>：这是一个高性能的数据帧库，尤其适合处理大规模数据和需要高效计算的场景，polars[plot] 为含可视化功能的版本，polars[time]为启用 <code>time-series</code> 相关功能的版本，polars[all]为安装所有可选功能的版本</li>
+</ul>
+<hr>
+<h3 id="2-数据可视化"><a href="#2-数据可视化" class="headerlink" title="2. 数据可视化"></a>2. <strong>数据可视化</strong></h3><pre><code>pip install matplotlib seaborn plotly
+</code></pre>
+<ul>
+<li><strong>Matplotlib</strong>：基础的绘图库。</li>
+<li><strong>Seaborn</strong>：基于 Matplotlib 的高级统计可视化工具。</li>
+<li><strong>Plotly</strong>：交互式可视化，适用于动态图表和网页嵌入。</li>
+</ul>
+<hr>
+<h3 id="3-机器学习"><a href="#3-机器学习" class="headerlink" title="3. 机器学习"></a>3. <strong>机器学习</strong></h3><pre><code>pip install scikit-learn xgboost lightgbm catboost
+</code></pre>
+<ul>
+<li><strong>Scikit-learn</strong>：经典机器学习算法。</li>
+<li><strong>XGBoost</strong>、<strong>LightGBM</strong>、<strong>CatBoost</strong>：高效的梯度提升树算法库。</li>
+</ul>
+<hr>
+<h3 id="4-深度学习"><a href="#4-深度学习" class="headerlink" title="4. 深度学习"></a>4. <strong>深度学习</strong></h3><pre><code>
+pip install tensorflow keras torch torchvision
+</code></pre>
+<ul>
+<li><strong>TensorFlow</strong> &amp; <strong>Keras</strong>：谷歌开发的深度学习框架。</li>
+<li><strong>PyTorch</strong>：流行的动态计算图深度学习框架。</li>
+<li><strong>Torchvision</strong>：处理图像任务的附加库。</li>
+</ul>
+<hr>
+<h3 id="5-数据抓取与处理"><a href="#5-数据抓取与处理" class="headerlink" title="5. 数据抓取与处理"></a>5. <strong>数据抓取与处理</strong></h3><pre><code>pip install requests beautifulsoup4 lxml scrapy
+</code></pre>
+<ul>
+<li><strong>Requests</strong>：网络请求工具。</li>
+<li><strong>BeautifulSoup</strong> &amp; <strong>lxml</strong>：HTML&#x2F;XML 解析库。</li>
+<li><strong>Scrapy</strong>：高效的爬虫框架。</li>
+</ul>
+<hr>
+<h3 id="6-自然语言处理（NLP）"><a href="#6-自然语言处理（NLP）" class="headerlink" title="6. 自然语言处理（NLP）"></a>6. <strong>自然语言处理（NLP）</strong></h3><pre><code>pip install nltk spacy gensim transformers
+</code></pre>
+<ul>
+<li><strong>NLTK</strong>：经典 NLP 工具。</li>
+<li><strong>SpaCy</strong>：高效的 NLP 框架。</li>
+<li><strong>Gensim</strong>：主题建模与文档相似性分析。</li>
+<li><strong>Transformers</strong>：基于 BERT、GPT 等预训练模型的库。</li>
+</ul>
+<hr>
+<h3 id="7-时间序列分析"><a href="#7-时间序列分析" class="headerlink" title="7. 时间序列分析"></a>7. <strong>时间序列分析</strong></h3><pre><code>pip install statsmodels pmdarima prophet
+</code></pre>
+<ul>
+<li><strong>Statsmodels</strong>：统计建模。</li>
+<li><strong>PMDARIMA</strong>：自动 ARIMA 模型选择。</li>
+<li><strong>Prophet</strong>：Facebook 开发的时间序列预测工具。</li>
+</ul>
+<hr>
+<h3 id="8-数据库操作"><a href="#8-数据库操作" class="headerlink" title="8. 数据库操作"></a>8. <strong>数据库操作</strong></h3><pre><code>pip install sqlalchemy psycopg2 pymysql
+</code></pre>
+<ul>
+<li><strong>SQLAlchemy</strong>：数据库 ORM 工具。</li>
+<li><strong>psycopg2</strong>：PostgreSQL 驱动。</li>
+<li><strong>PyMySQL</strong>：MySQL 驱动。</li>
+</ul>
+<hr>
+<h3 id="9-辅助工具"><a href="#9-辅助工具" class="headerlink" title="9. 辅助工具"></a>9. <strong>辅助工具</strong></h3><pre><code>pip install tqdm
+pip install joblib 
+pip install jupyterlab
+pip install notebook
+</code></pre>
+<ul>
+<li><strong>Tqdm</strong>：显示循环进度条。</li>
+<li><strong>Joblib</strong>：并行计算工具。</li>
+<li><strong>JupyterLab</strong>：交互式编程环境。</li>
+</ul>
+<hr>
+<h3 id="10-大模型"><a href="#10-大模型" class="headerlink" title="10.大模型"></a>10.大模型</h3><pre><code>pip install python-dotenv openai dashscope
+pip install langchain langchain-community langchain-core langchain-openai langchain-text-splitters transformers
+</code></pre>
+<hr>
+<h3 id="11-pdf处理库"><a href="#11-pdf处理库" class="headerlink" title="11.pdf处理库"></a>11.pdf处理库</h3><pre><code># 提取库
+pip install pdfminer.six pdfplumber
+
+# pdf的压缩，加密等处理
+pip install pymupdf
+</code></pre>
+<hr>
+<p>安装完成后，定期检查更新：</p>
+<pre><code>pip list --outdated
+pip install --upgrade 包名
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2025 翩跹志
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;羽翩跹
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

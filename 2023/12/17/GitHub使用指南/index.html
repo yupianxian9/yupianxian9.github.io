@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>GitHub使用指南 | 翩跹志</title>
+    <meta name="author" content="羽翩跹" />
+    <meta name="description" content="墨染云笺香入梦，风携花影静听禅" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>翩跹志</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;翩跹志</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>GitHub使用指南</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/12/17
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%80%E6%9C%AF/" style="color: #03a9f4">
+                    技术
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>GitHub 是一个基于 Git 的代码托管平台，支持版本控制和协作开发。以下是详细的 GitHub 使用指南，涵盖从基础到进阶的核心功能：</p>
+<span id="more"></span>
+
+<h2 id="一-GitHub密钥生成与链接"><a href="#一-GitHub密钥生成与链接" class="headerlink" title="一.GitHub密钥生成与链接"></a>一.GitHub密钥生成与链接</h2><h3 id="（一）前言"><a href="#（一）前言" class="headerlink" title="（一）前言"></a>（一）前言</h3><p>很多朋友在用github管理项目的时候，都是直接使用https url克隆到本地，当然也有有些人使用 SSH url 克隆到本地。然而，为什么绝大多数人会使用https url克隆呢？</p>
+<p>这是因为，使用https url克隆对初学者来说会比较方便，复制https url 然后到 git Bash 里面直接用clone命令克隆到本地就好了。而使用 SSH url 克隆却需要在克隆之前先配置和添加好 SSH key 。</p>
+<p>因此，如果你想要使用 SSH url 克隆的话，你必须是这个项目的拥有者。否则你是无法添加 SSH key 的。</p>
+<h3 id="二）https-和-SSH-的区别："><a href="#二）https-和-SSH-的区别：" class="headerlink" title="(二）https 和 SSH 的区别："></a>(二）https 和 SSH 的区别：</h3><p>1、前者可以随意克隆github上的项目，而不管是谁的；而后者则是你必须是你要克隆的项目的拥有者或管理员，且需要先添加 SSH key ，否则无法克隆。</p>
+<p>2、https url 在push的时候是需要验证用户名和密码的；而 SSH 在push的时候，是不需要输入用户名的，如果配置SSH key的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的。</p>
+<h3 id="（三）在-github-上添加-SSH-key-的步骤："><a href="#（三）在-github-上添加-SSH-key-的步骤：" class="headerlink" title="（三）在 github 上添加 SSH key 的步骤："></a>（三）在 github 上添加 SSH key 的步骤：</h3><p><strong>第一步、首先，检查下自己之前有没有已经生成：</strong></p>
+<p>在开始菜单中打开git下的git bash（当然，在其他目录下打开git bash也是一样的）：<br>然后执行</p>
+<pre><code class="bash">ls -al ~/.ssh 
+</code></pre>
+<p><strong>第二步、如果能进入到.ssh文件目录下 ，则证明，之前生成过.ssh秘钥，可以直接使用里面的秘钥。</strong></p>
+<p>如果不能进入到.ssh文件目录下，则：</p>
+<p>检测下自己之前有没有配置：</p>
+<pre><code class="lua">git config user.name和git config user.email（直接分别输入这两个命令）
+</code></pre>
+<p>如果之前没有创建，则执行以下命令：</p>
+<p>注意要先进入到仓库里。</p>
+<pre><code class="verilog">git config --global user.name ‘xxxxx’ 
+git config --global user.email ‘xxx@xx.xxx’
+</code></pre>
+<p>生成秘钥</p>
+<pre><code class="undefined">ssh-keygen -t rsa -C ‘上面的邮箱’
+</code></pre>
+<p>代码参数含义：</p>
+<p>-t 指定密钥类型，默认是 rsa ，可以省略。<br>-C 设置注释文字，比如邮箱。<br>-f 指定密钥文件存储文件名。</p>
+<p>接着按3个回车</p>
+<pre><code class="vbnet">[root@localhost ~]# ssh-keygen -t rsa       &lt;== 建立密钥对，-t代表类型，有RSA和DSA两种
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):   &lt;==密钥文件默认存放位置，按Enter即可
+Created directory &#39;/root/.ssh&#39;.
+Enter passphrase (empty for no passphrase):     &lt;== 输入密钥锁码，或直接按 Enter 留空
+Enter same passphrase again:     &lt;== 再输入一遍密钥锁码
+Your identification has been saved in /root/.ssh/id_rsa.    &lt;== 生成的私钥
+Your public key has been saved in /root/.ssh/id_rsa.pub.    &lt;== 生成的公钥
+The key fingerprint is:
+SHA256:K1qy928tkk1FUuzQtlZK+poeS67vIgPvHw9lQ+KNuZ4 root@localhost.localdomain
+The key&#39;s randomart image is:
++---[RSA 2048]----+
+|           +.    |
+|          o * .  |
+|        . .O +   |
+|       . *. *    |
+|        S =+     |
+|    .    =...    |
+|    .oo =+o+     |
+|     ==o+B*o.    |
+|    oo.=EXO.     |
++----[SHA256]-----+
+</code></pre>
+<p>最后在.ssh目录下(C盘用户文件夹下)得到了两个文件：id_rsa（私有秘钥）和id_rsa.pub（公有密钥）</p>
+<p><strong>第三步、如果想登陆远端，则需要将rsa.pub里的秘钥添加到远端。</strong></p>
+<p>首先，去.ssh目录下找到id_rsa.pub这个文件夹打开复制全部内容。</p>
+<p>接着：</p>
+<p>1.登录GitHub，进入你的Settings</p>
+<p>2.会看到左边这些目录，点击SSH and GPG keys</p>
+<p>3.创建New SSH key</p>
+<p>4.粘贴你的密钥到你key输入框中</p>
+<p>5.点击Add SSH key</p>
+<p>6.再弹出窗口，输入你的GitHub密码，点击确认按钮。</p>
+<p>7.到此，就大功告成了。</p>
+<p><strong>第四步 测试。</strong></p>
+<p>再使用下面的命令测试是否成功</p>
+<pre><code class="css">ssh -T git@github.com
+</code></pre>
+<h3 id="二、仓库（Repository）管理"><a href="#二、仓库（Repository）管理" class="headerlink" title="二、仓库（Repository）管理"></a><strong>二、仓库（Repository）管理</strong></h3><ol>
+<li><p><strong>创建仓库</strong></p>
+<ul>
+<li><p><strong>在线创建</strong>：点击 GitHub 主页右上角 <code>+ → New repository</code>，填写名称和描述。</p>
+</li>
+<li><p><strong>本地初始化</strong>：</p>
+<pre><code>mkdir my-project
+cd my-project
+git init
+git remote add origin git@github.com:username/repo-name.git
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>克隆仓库</strong></p>
+<pre><code>git clone git@github.com:username/repo-name.git
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="三、基础-Git-操作"><a href="#三、基础-Git-操作" class="headerlink" title="三、基础 Git 操作"></a><strong>三、基础 Git 操作</strong></h3><ol>
+<li><p><strong>提交代码</strong></p>
+<ul>
+<li><p>添加文件到暂存区：</p>
+<pre><code>git add .         # 添加所有文件
+git add file.txt  # 添加特定文件
+</code></pre>
+</li>
+<li><p>提交到本地仓库：</p>
+<pre><code>
+</code></pre>
+</li>
+</ul>
+<p>git commit -m “提交描述”</p>
+<pre><code>
+- 推送到远程仓库：
+</code></pre>
+<p>  git push origin main  # 推送到 main 分支</p>
+<pre><code>
+</code></pre>
+</li>
+<li><p><strong>同步更新</strong></p>
+<pre><code>git pull origin main  # 拉取远程最新代码
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="四、分支管理"><a href="#四、分支管理" class="headerlink" title="四、分支管理"></a><strong>四、分支管理</strong></h3><ol>
+<li><p><strong>创建与切换分支</strong></p>
+<pre><code>git branch feature-1    # 创建分支
+git checkout feature-1  # 切换分支
+# 或简写：
+git checkout -b feature-1
+</code></pre>
+</li>
+<li><p><strong>合并分支</strong></p>
+<ul>
+<li><p>切换到目标分支（如 <code>main</code>），执行合并：</p>
+<pre><code>
+</code></pre>
+</li>
+</ul>
+<p>git merge feature-1</p>
+<pre><code>
+- **解决冲突**：手动编辑标记冲突的文件，然后重新提交。
+</code></pre>
+</li>
+<li><p><strong>删除分支</strong></p>
+<pre><code>
+</code></pre>
+</li>
+</ol>
+<p>git branch -d feature-1  # 删除本地分支<br>   git push origin –delete feature-1  # 删除远程分支</p>
+<pre><code>
+------
+
+### **五、协作与 Pull Request**
+
+1. **Fork 仓库**
+   - 在 GitHub 项目页点击 `Fork`，将他人仓库复制到自己的账号下。
+2. **发起 Pull Request（PR）**
+   - 修改 Fork 后的仓库代码，推送更改到新分支。
+   - 进入原仓库页面，点击 `New Pull Request`，选择分支并提交。
+3. **代码审查与合并**
+   - 审查者可在 PR 页面评论或请求修改。
+   - 通过后点击 `Merge pull request` 合并代码。
+
+------
+
+### **六、Issue 与项目管理**
+
+1. **创建 Issue**
+   - 在仓库的 `Issues` 标签页点击 `New Issue`，描述问题或任务。
+2. **标签与里程碑**
+   - 使用标签（Labels）分类 Issue（如 `bug`、`enhancement`）。
+   - 设置里程碑（Milestones）跟踪项目进度。
+
+------
+
+### **七、高级功能**
+
+1. **GitHub Actions**
+   - 自动化 CI/CD 流程，配置文件路径：`.github/workflows/xxx.yml`。
+2. **GitHub Pages**
+   - 托管静态网站：在仓库设置中启用，默认分支为 `gh-pages` 或 `docs/` 目录。
+3. **Wiki**
+   - 用于编写项目文档，支持 Markdown 格式。
+
+------
+
+### **八、常见问题**
+
+- **撤销本地提交**：
+</code></pre>
+<p>  git reset –soft HEAD<del>1  # 保留修改<br>  git reset –hard HEAD</del>1  # 丢弃修改</p>
+<pre><code>
+- **同步 Fork 的仓库**：
+</code></pre>
+<p>  git remote add upstream <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:original&#x2F;repo.git<br>  git fetch upstream<br>  git merge upstream&#x2F;main</p>
+<pre><code>
+------
+
+### **九、最佳实践**
+
+1. 频繁提交小改动，保持提交信息清晰。
+2. 使用 `.gitignore` 排除无需跟踪的文件（如日志、编译产物）。
+3. 定期拉取远程更新，避免合并冲突。
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2025 翩跹志
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;羽翩跹
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

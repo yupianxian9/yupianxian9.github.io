@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>Scoop使用指南 | 翩跹志</title>
+    <meta name="author" content="羽翩跹" />
+    <meta name="description" content="墨染云笺香入梦，风携花影静听禅" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>翩跹志</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;翩跹志</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Scoop使用指南</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/17
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%80%E6%9C%AF/" style="color: #ffa2c4">
+                    技术
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>scoop是一款强大的Windows端包管理工具。</p>
+<p>scoop官网: <code> https://scoop.sh/</code></p>
+<span id="more"></span>
+
+<h2 id="一、Scoop安装与使用"><a href="#一、Scoop安装与使用" class="headerlink" title="一、Scoop安装与使用"></a>一、Scoop安装与使用</h2><p>以下是 Scoop 的安装和使用教程，涵盖替换为国内 Gitee 镜像加速下载和将 Scoop 安装到特定文件夹：</p>
+<hr>
+<h3 id="1-前置准备"><a href="#1-前置准备" class="headerlink" title="1. 前置准备"></a><strong>1. 前置准备</strong></h3><ol>
+<li><p><strong>安装 PowerShell 7 或更高版本</strong>（建议使用 PowerShell Core，安装速度更快）。</p>
+</li>
+<li><p><strong>确保系统环境变量中包含 PowerShell</strong>。</p>
+</li>
+<li><p><strong>安装 .NET Framework 4.5 或更高版本</strong>（Windows 10+ 通常已包含）。</p>
+</li>
+<li><p><strong>检查系统是否开启脚本执行</strong></p>
+<p>在 PowerShell 中运行：</p>
+<pre><code class="powershell">Get-ExecutionPolicy
+</code></pre>
+<p>如果输出不是 <code> RemoteSigned</code> 或 <code>Unrestricted</code>，则运行以下命令：</p>
+<pre><code class="powershell">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="2-将-Scoop-安装到特定文件夹"><a href="#2-将-Scoop-安装到特定文件夹" class="headerlink" title="2. 将 Scoop 安装到特定文件夹"></a><strong>2. 将 Scoop 安装到特定文件夹</strong></h3><p>默认情况下，Scoop 安装在用户目录的 <code>C:\Users\&lt;用户名&gt;\scoop</code> 文件夹下。如果需要指定其他路径，请按照以下步骤操作：</p>
+<h4 id="安装-Scoop-到指定目录"><a href="#安装-Scoop-到指定目录" class="headerlink" title="安装 Scoop 到指定目录"></a><strong>安装 Scoop 到指定目录</strong></h4><ol>
+<li><p><strong>手动创建目标文件夹</strong>：<br>例如，将 Scoop 安装到 <code>D:\Scoop</code>，先手动创建 <code>D:\Scoop</code> 文件夹。</p>
+</li>
+<li><p><strong>设定安装路径</strong></p>
+<p>在 PowerShell 中执行以下命令，将 <code> SCOOP</code></p>
+<p> 环境变量设置为自定义路径：</p>
+<pre><code>$env:SCOOP=&#39;D:\Scoop&#39;
+[environment]::setEnvironmentVariable(&#39;SCOOP&#39;, $env:SCOOP, &#39;User&#39;)
+</code></pre>
+</li>
+<li><p><strong>安装</strong>：<br>安装完成后，检查目标路径是否生成了 Scoop 的目录结构。</p>
+</li>
+</ol>
+<pre><code class="powershell">Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+</code></pre>
+<p><strong>注意：</strong>若上述命令安装不了，可以使用下面的GitHub镜像进行安装</p>
+<pre><code class="powershell">irm https://cdn.jsdelivr.net/gh/duzyn/scoop-cn/install.ps1 | iex
+</code></pre>
+<h3 id="3-替换为国内-Gitee-镜像加速下载"><a href="#3-替换为国内-Gitee-镜像加速下载" class="headerlink" title="3. 替换为国内 Gitee 镜像加速下载"></a><strong>3. 替换为国内 Gitee 镜像加速下载</strong></h3><p>国内用户使用 Scoop 时可能因网络问题导致安装或下载软件缓慢。可以通过替换源为 Gitee 镜像来解决。</p>
+<h4 id="替换主-Scoop-源"><a href="#替换主-Scoop-源" class="headerlink" title="替换主 Scoop 源"></a><strong>替换主 Scoop 源</strong></h4><ol>
+<li><p><strong>切换到 Gitee 镜像源</strong>：</p>
+<pre><code class="powershell">#切换到南京大学镜像源
+scoop config SCOOP_REPO https://mirror.nju.edu.cn/git/scoop-main.git
+# 拉取新库地址
+scoop update
+</code></pre>
+</li>
+<li><p><strong>修改默认 bucket（应用仓库）地址</strong>：</p>
+<p> 已有的仓库需要先删除掉，然后才能够替换为国内源</p>
+</li>
+</ol>
+<pre><code>scoop bucket rm main
+</code></pre>
+<p>将默认 bucket 指向国内镜像：</p>
+<pre><code class="powershell">scoop bucket add main https://mirror.nju.edu.cn/git/scoop-main.git
+</code></pre>
+<h4 id="替换额外的-bucket-源"><a href="#替换额外的-bucket-源" class="headerlink" title="替换额外的 bucket 源"></a><strong>替换额外的 bucket 源</strong></h4><p>Scoop 支持添加多个 bucket。例如，添加 <code>extras</code> 仓库的国内镜像：</p>
+<pre><code class="powershell">scoop bucket add extras https://mirror.nju.edu.cn/git/scoop-extras.git
+</code></pre>
+<h4 id="检查镜像生效情况："><a href="#检查镜像生效情况：" class="headerlink" title="检查镜像生效情况："></a><strong>检查镜像生效情况</strong>：</h4><p>运行以下命令查看 bucket 列表：</p>
+<pre><code class="powershell">scoop bucket list
+</code></pre>
+<hr>
+<h3 id="4-Scoop-的基本使用"><a href="#4-Scoop-的基本使用" class="headerlink" title="4. Scoop 的基本使用"></a><strong>4. Scoop 的基本使用</strong></h3><p>以下是常用的 Scoop 命令和使用示例：</p>
+<ol>
+<li><strong>安装软件</strong>：<ul>
+<li>安装单个软件：<code>scoop install &lt;app_name&gt;</code>，如<code>scoop install git</code>。</li>
+<li>安装指定版本软件：<code>scoop install &lt;app_name&gt;@&lt;version&gt;</code>。</li>
+<li>全局安装软件：<code>scoop install &lt;app_name&gt; -g</code>。</li>
+</ul>
+</li>
+</ol>
+<pre><code>### 直接使用 scoop install 命令安装本地文件
+将本地安装包放置在合适的位置
+将需要安装的软件包（如 .msi、.exe、.zip 等格式的文件）放置在一个容易访问的目录中，例如 C:\LocalPackages。
+使用 scoop install 命令安装
+在 PowerShell 中运行以下命令，指定本地安装包的路径：
+
+scoop install path C:\LocalPackages\your-package-file.exe
+
+或者：
+
+scoop install path C:\LocalPackages\your-package-file.msi
+
+其中 C:\LocalPackages\your-package-file.exe 是本地安装包的完整路径。
+</code></pre>
+<ol start="2">
+<li><strong>卸载软件</strong>：<ul>
+<li>卸载软件：<code>scoop uninstall &lt;app_name&gt;</code>。</li>
+<li>卸载软件并删除相关数据：<code>scoop uninstall &lt;app_name&gt; -p</code>。</li>
+</ul>
+</li>
+<li><strong>搜索软件</strong>：<ul>
+<li>使用自带搜索命令：<code>scoop search &lt;app_name&gt;</code>。</li>
+<li>安装scoop-search插件后使用：<code>scoop install main/scoop-search</code>，然后通过<code>scoop-search &lt;app_name&gt;</code>进行搜索。</li>
+</ul>
+</li>
+<li><strong>查看已安装软件</strong>：<code>scoop list</code>。</li>
+<li><strong>更新软件</strong>：<ul>
+<li>更新Scoop：<code>scoop update</code>。</li>
+<li>更新单个软件：<code>scoop update &lt;app_name&gt;</code>。</li>
+<li>更新所有软件：<code>scoop update *</code>或<code>scoop update -a</code>。</li>
+</ul>
+</li>
+<li><strong>禁止更新软件</strong>：<ul>
+<li>禁止更新：<code>scoop hold &lt;app_name&gt;</code>。</li>
+<li>解除禁止更新：<code>scoop unhold &lt;app_name&gt;</code>。</li>
+</ul>
+</li>
+<li><strong>清理旧版本软件</strong>：<code>scoop cleanup &lt;app_name&gt;</code>。</li>
+<li><strong>清理安装文件</strong>：<ul>
+<li>查看所有安装文件：<code>scoop cache</code>。</li>
+<li>删除指定软件安装文件：<code>scoop cache rm &lt;app_name&gt;</code>。</li>
+<li>删除所有安装文件：<code>scoop cache rm *</code>或<code>scoop cache rm -a</code>或<code>scoop cache rm --all</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-管理软件仓库（Bucket）"><a href="#5-管理软件仓库（Bucket）" class="headerlink" title="5.管理软件仓库（Bucket）"></a>5.管理软件仓库（Bucket）</h3><ol>
+<li><strong>添加仓库</strong>：<code>scoop bucket add &lt;仓库名&gt;</code>，如<code>scoop bucket add extras</code>。</li>
+<li><strong>查看已添加仓库</strong>：<code>scoop bucket list</code>。</li>
+<li><strong>移除仓库</strong>：<code>scoop bucket rm &lt;仓库名&gt;</code>。</li>
+</ol>
+<h3 id="6-卸载scoop"><a href="#6-卸载scoop" class="headerlink" title="6.卸载scoop"></a>6.卸载scoop</h3><pre><code>scoop uninstall scoop
+</code></pre>
+<h2 id="二、常用软件安装"><a href="#二、常用软件安装" class="headerlink" title="二、常用软件安装"></a>二、常用软件安装</h2><h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><pre><code># 安装Chrome 126
+scoop install extras/googlechrome@126.0.6478.183
+
+# 安装Git
+scoop install main/git
+
+# 安装HiBit Uninstaller
+scoop install extras/hibit-uninstaller
+
+# 安装Koodo Reader
+scoop install extras/koodo-reader
+
+# 安装LocalSend
+scoop install extras/localsend
+
+# 安装Sublime Text 4169
+scoop install extras/sublime-text@4-4169
+
+# 安装Microsoft VS Code
+scoop install extras/vscode
+
+# 安装Magpie
+scoop install extras/magpie
+
+# 安装Caesium Image Compressor
+scoop install extras/caesium-image-compressor
+
+# 安装draw.io
+scoop install extras/draw.io
+
+# 安装pandoc
+scoop install main/pandoc
+
+# 安装upscayl
+scoop install extras/upscayl
+
+#安装typora1.7.6
+scoop install extras/typora@1.7.6
+
+#安装node.js
+scoop install main/nodejs
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2023 - 2025 翩跹志
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;羽翩跹
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
